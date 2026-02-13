@@ -1,0 +1,22 @@
+{
+  "name": "desktop",
+  "packageManager": "yarn@4.12.0",
+  "version": "0.0.1",
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch --onSuccess \"electron .\"",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^40.4.0",
+    "electron-builder": "26.7.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.4"
+  },
+  "dependencies": {
+    "shared-types": "workspace:^"
+  }
+}
