@@ -1,8 +1,7 @@
 import { useState } from "react";
-// Import interface để TypeScript hiểu window.electronAPI là gì
 import { IElectronAPI } from "shared-types";
 
-// Hack TypeScript để nó không báo lỗi property electronAPI không tồn tại trên window
+// prevent TypeScript error for window.electronAPI (custom property for the `window` object)
 declare global {
   interface Window {
     electronAPI: IElectronAPI;

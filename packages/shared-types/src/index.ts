@@ -1,4 +1,14 @@
-// api contract b/w React & Electron
+/**
+ * API contract b/w React & Electron
+ */
 export interface IElectronAPI {
-  sendMessage: (msg: string) => Promise<string>;
+  /**
+   * Send message to Electron backend and optionally attach data
+   * @param msg message
+   * @param data an object of arbitrary structure
+   * @returns
+   */
+  sendMessage: (msg: string, data?: object) => Promise<string>;
 }
+
+export * from "./table-name";
