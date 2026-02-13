@@ -6,23 +6,27 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"), // Trỏ vào file đã build
+      preload: path.join(__dirname, "preload.js"), // point to preload script file
       nodeIntegration: false,
       contextIsolation: true,
     },
   });
 
-  // Nếu đang dev thì load localhost, nếu build rồi thì load file
-  // Biến môi trường này do mình tự quy định hoặc check isPackaged
+  // load URL or built file of the frontend
+  // dev load localhost, built load file
   if (process.env.NODE_ENV !== "production") {
     win.loadURL("http://localhost:3000");
   } else {
     win.loadFile(path.join(__dirname, "../../web/dist/index.html"));
   }
+
+  app.on("window-all-closed", () => {
+    app.quit();
+  });
 };
 
 app.whenReady().then(() => {
-  // Đăng ký sự kiện lắng nghe từ Frontend
+  // register event from FE
   ipcMain.handle("chat:send", async (_, msg) => {
     console.log("Frontend gửi:", msg);
     return `Backend received: ${msg} - Pong!`;
